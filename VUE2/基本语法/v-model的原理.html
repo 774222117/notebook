@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- <input type="text" :value="message" @input="valueChange"> -->
+			<input type="text" v-model="message">
+			<h2>{{message}}</h2>
+			
+			
+			<!-- 表单二选一    name必须一致才能二选一    没有v-model属性的情况下必须添加name  才能互斥-->
+			<label for="male">
+				<input type="radio" id="male" value='男' v-model="sex">男
+			</label>
+			<label for="female">
+				<input type="radio" id="female" value="女" v-model="sex">女
+			</label>
+			<h2>您选择的性别是：{{sex}}</h2>
+			
+			
+			<!-- 复选框 -->
+			<label for="agree">
+				<input type="checkbox" id="agree" v-model="isAgree">同意协议
+				<h2>您选择的是：{{isAgree}}</h2>
+			</label>
+			<button :disabled="!isAgree">下一步</button>
+			
+			
+			<!-- 复选多选   一个label对应一个input  有label可以直接选择文字就能选中-->
+			<input type="checkbox" value="篮球" v-model="hobbies">篮球
+			<input type="checkbox" value="足球" v-model="hobbies">足球
+			<input type="checkbox" value="唱歌" v-model="hobbies">唱歌
+			<input type="checkbox" value="rap" v-model="hobbies">rap
+			<h2>{{hobbies}}</h2>
+			
+			
+			
+			<!-- 多选一 -->
+			<select name="abc" id="" v-model="fruit">
+				<option value="苹果">苹果</option>
+				<option value="香蕉">香蕉</option>
+				<option value="榴莲">榴莲</option>
+				<option value="葡萄">葡萄</option>
+			</select>
+			<h2>选择的水果是：{{fruit}}</h2>
+			
+			<!-- 多选多  multiple 按住ctrl-->
+			<select name="abc" v-model="fruits" multiple>
+				<option value="苹果">苹果</option>
+				<option value="香蕉">香蕉</option>
+				<option value="榴莲">榴莲</option>
+				<option value="葡萄">葡萄</option>
+			</select>
+			<h2>选择的水果是：{{fruits}}</h2>
+			
+			
+			<!-- 值绑定 -->
+			<label v-for="item in originHobbies" :for="item">
+				<input type="checkbox" :value="item" :id="item" v-model="hobbiesNum">{{item}}
+			</label>
+			<h2>值绑定：{{hobbiesNum}}</h2>
+		</div>
+	</body>
+	<script src="../vue.js"></script>
+	<script type="text/javascript">
+		const app = new Vue({
+			el:'#app',
+			data:{
+				message:'你好啊',
+				sex:'男',
+				isAgree:false,
+				hobbies:[],
+				fruit:'苹果',
+				fruits:[],
+				originHobbies:['篮球','足球','乒乓球','羽毛球','台球','高尔夫球'],
+				hobbiesNum:[]
+			},
+			methods:{
+				valueChange(event){
+					this.message = event.target.value;
+				}
+			},
+		})
+	</script>
+</html>

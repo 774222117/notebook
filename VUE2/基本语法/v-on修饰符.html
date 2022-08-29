@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 1. .stop修饰符的使用 -->
+			<div @click="divClick">
+				aaaaaaaa
+				<button @click.stop="btnClick">btnClick</button>
+			</div>
+			
+			<!-- 2. .prevent修饰符的使用  阻止默认事件-->
+			<form action="baidu">
+				<input type="submit" value="提交" @click.prevent="submitClick">
+			</form>
+			
+			<!-- 3.监听某个键盘的键帽点击 enter监听回车按钮 -->
+			<input type="text" @keyup.enter="keyUp">
+			
+			<!-- 4.监听组件   .native-->
+			<!-- <cpn @click.native="cpnClick"></cpn> -->
+			
+			
+			<!-- 5.once修饰符  只能点击一次 -->
+			<button @click.once="onceClick">按钮2</button>
+			<br>
+			<!-- 6.修饰符  lazy可以让数据在失去焦点或者回车时才会更新 -->
+			<input type="text" v-model.lazy="message">
+			<h2>{{message}}</h2>
+			
+			<br>
+			<!-- 7.修饰符 number  -->
+			<input type="number" v-model.number="age">
+			<h2>{{age}}--{{typeof(age)}}</h2>
+			
+			<br>
+			<!-- 8.修饰符： trim  去除两边的空格 -->
+			<input type="text" v-model.trim="name">
+			<h2>{{name}}</h2>
+		</div>
+	</body>
+	<script src="../vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:'#app',
+			data:{
+				message:'你好啊',
+				age:'',
+				name:'xiaoshu'
+			},
+			methods:{
+				divClick(){
+					console.log('divClick')
+				},
+				btnClick(){
+					console.log('btnClick')
+				},
+				submitClick(){
+					console.log('submitClick')
+				},
+				keyUp(){
+					console.log('keyup')
+				},
+				onceClick(){
+					console.log('onceClick')
+				}
+			}
+		})
+	</script>
+</html>
