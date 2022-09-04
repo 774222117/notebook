@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 父组件 :prop 传子  子组件通过prop:['sonDate']接受数据  fatherDate是父组件传过来的，sondate是自定义接受的数据-->
+			<cpn :sonDate="fatherDate"></cpn>
+			
+			<!-- 子传父  需要将category中的item传递到父组件  通过btnClick函数$emit传递-->
+			<div>
+				<!-- 子组件 -->
+				<button v-for="item in categories" @click="btnClick(item)"></button>
+				<!-- 父组件接收 -->
+				<cpn2 @itemClick="cpnClick"></cpn2>
+			</div>
+		</div>
+	</body>
+	<script src="../vue.js"></script>
+	<script>
+		const app = new Vue({
+			el:'#app',
+			data(){
+				return {
+					message:'你好啊',
+					categories:[
+						{id:'aaa',name:'热门推荐'},
+						{id:'aaa',name:'热门推荐'},
+						{id:'aaa',name:'热门推荐'},
+						{id:'aaa',name:'热门推荐'},
+					]
+				}
+			}
+			methods:{
+				// 发射事件
+				btnClick(item){
+					this.$emit('itemClick',item)
+				},
+				cpnClick(item){
+					console.log(item)
+				}
+			}
+		})
+	</script>
+</html>
