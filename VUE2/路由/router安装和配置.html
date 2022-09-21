@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		// 配置路由相关的信息
+		import VueRouter from 'vue-router'
+		import Vue from 'vue'
+		
+		
+		// 1.通过Vue.use(插件),安装插件
+		Vue.use(VueRouter)
+		
+		// 2.创建VueRouter对象
+		const routes = [
+			
+		]
+		
+		const router = new VueRouter({
+			// 配置路由和组件之间的应用关系
+			routes
+		})
+		
+		// 3.将router对象传入到Vue实例
+		export default router
+		
+		
+		// 4.在main.js文件中  注册
+		import router from './router/index'
+		
+		new Vue({
+			el:'#app',
+			router:router,
+			render:h => h(App)
+		})
+	</script>
+</html>

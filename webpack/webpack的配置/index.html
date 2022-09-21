@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src="../webpack的起步/dist/bundle.js"></script>
+</html>
+
+
+<!-- cmd中输入 -->
+<!--         webpack ./src/main.js ./dist/bundle.js        打包到dist文件中  -->
+
+<!-- 注意!!!!在终端执行的webpack都是全局的，但是在终端执行npm run build会优先本地，找不到再全局执行 -->
+
+
+<!-- 
+	安装webpack
+	全局安装 npm install webpack@3.6.0 -g
+	局部安装 Npm install webpack@3.6.0 --save-dev
+
+	安装css-loader 用于打包css文件
+	npm install --save-dev css-loader@2.0.2    安装其他版本会报错，提示版本过高
+	
+	安装style-loader
+	npm install --save-dev style-loader@0.23.1
+	
+	安装less-loader
+	npm install --save-dev less-loader less
+	
+	安装url-loader
+	npm install --save-dev url-loader
+	
+	安装file-loader
+	npm install file-loader --save-dev
+	
+	安装  ES6的语法转成ES5  需要使用babel  而在webpack中，我们直接使用babel对应的loader就可以
+	npm install --save-dev babel-loader@7 babel-core babel-preset-es2015
+	
+ -->

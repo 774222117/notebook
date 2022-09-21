@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script>
+		import VueRouter from 'vue-router'
+		import Vue from 'vue'
+		
+		// 配置 路径
+		import Home from '../components/Home'
+		import About from '../components/About'
+		
+		Vue.use(VueRouter)
+		
+		//  一个映射关系对应一个对象
+		const routes = [
+			{
+				path:'/home',
+				componets:Home
+			},{
+				path:'/about',
+				componets:About
+			}
+		]
+		
+		const router = new VueRouter({
+			routes
+		})
+		
+		export default router
+		
+		
+		// 在app.vue中使用
+		// 在app.vue中使用
+		// 在app.vue中使用
+		// 在app.vue中使用
+		// 在app.vue中使用
+	</script>
+</html>
