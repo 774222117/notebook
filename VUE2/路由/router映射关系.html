@@ -11,24 +11,66 @@
 		import Vue from 'vue'
 		
 		// 配置 路径
-		import Home from '../components/Home'
-		import About from '../components/About'
+		// import Home from '../components/Home'
+		// import About from '../components/About'
+		// import User from '../components/User'
+		
+		
+		// 懒加载写法
+		const Home = () => import('../components/Home')
+		const About = () => import('../components/About')
+		const User = () => import('../components/User')
+		
+		const HomeNews = () => import('../components/HomeNews')
+		const HomeMessage = () => import('../components/HomeMessage')
+		const Profile = () => import('../components/Profile')
 		
 		Vue.use(VueRouter)
 		
 		//  一个映射关系对应一个对象
 		const routes = [
 			{
+				path:'/',
+				// redirect重定向  就是默认首页的意思
+				redirect:'/home'
+			},
+			{
 				path:'/home',
-				componets:Home
+				componets:Home,
+				children:[
+					{
+						path:'',
+						redirect:'news'
+					},
+					{
+						path:'news',
+						component:HomeNews
+					},
+					{
+						path:'message',
+						component:HomeMessage
+					}
+				]
 			},{
 				path:'/about',
 				componets:About
+			},
+			{
+				path:'/user/:id',
+				components:User
+			},
+			{
+				path:'/profile',
+				components:Profile
 			}
 		]
 		
 		const router = new VueRouter({
-			routes
+			routes,
+			// 去掉路径中的 # 号
+			mode:'history',
+			// 自定义被选中的样式
+			linkActiveClass:'active'
 		})
 		
 		export default router
