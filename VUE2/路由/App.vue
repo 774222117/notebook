@@ -21,7 +21,11 @@
 		<button @click="userClick">用户</button>
 		<button @click="profileClick">档案</button>
 		
-		
+		<!-- 看生命周期过程 -->
+		<!-- 排除profile,User的缓存，让其每次进入都重新create -->
+		<keep-alive exclude="Profile,User">
+			<router-view></router-view>
+		</keep-alive>
 	</div>
 </template>
 
@@ -49,7 +53,7 @@
 			},
 			profileClick(){
 				this.$router.push({
-					path:'/profile',
+					path:'/home/news',
 					query:{
 						name:'Kobe',
 						age:18,
@@ -57,11 +61,31 @@
 					}
 				})
 			}
+		},
+		created(){
+			
+		},
+		destroyed(){
+			console.log('页面销毁时')
+		},
+		// 活跃的   这两个函数 只有该组件被保持了状态使用了keep-alive时，才是有效的
+		activated(){
+			this.$router.push(this.path)
+		},
+		// 不活跃的
+		deactivated(){
+			
+		},
+		beforeRouteLeave(to,from,next){
+			this.path = this.$route.path
+			next()
 		}
+		
 	}
 </script>
 
 <style>
+	@import "./assects/css/base.css"
 	/* 被点击的样式改变 */
 	.router-link-active {
 		color:red

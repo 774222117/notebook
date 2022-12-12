@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script>
+	<script>
+		
+		 
+		
+		1. 什么是异步？
+		
+		不会按照浏览器的加载方式 由上到下。
+		
+		2. 前端哪里面有异步？
+		
+		      1. 回调函数
+		
+		　　2. 定时器
+		
+		　　3. 事件绑定
+		
+		　　4. ajax
+		
+		3. promise是 es6 为解决异步编程的。
+		
+		4.axios 是由 promise 封装的一个 http 的库。
+		
+		promise是一种异步解决方案。在ES2015以前，javascript中实现异步的方式，主要通过回调函数，也即在一个函数中传入一个函数，实现异步操作。
+		
+		由于ajax异步方式请求数据时，我们不能知道数据具体回来的事件，所以过去只能将一个callback函数传递给ajax封装的方法，当ajax异步请求完成时，执行我们传递的callback函数。
+		
+		promise对象接受resolve和reject两个参数，当一个异步动作发生时，promise对象会通过resolve完成对动作成功进行解析，reject会捕获这个动作的异常。一个promise对象，通过new Promise().then()执行下一步骤操作。
+		
+		
+		1.通过Promise构造函数创建一个promise对象。
+		
+		
+		2.这个Promise构造函数中有个参数，这个参数是一个函数，它包含两个参数（这两个参数也是函数），一个是resolve， 一个reject。
+		
+		
+		let pmObj = new Promise((resolve,reject) = > {
+			// 模拟一个异步请求，想要将成功的数据发送出去
+			setTimeout(() => {
+				// 将成功的数据放在resolve中，传递出去
+				resolve('success')
+				// reject('error')
+			},1000)
+		})
+		
+		3.通过这个promise对象，我们可以在.then()函数中获取成功的数据，在.catch()函数中获取失败的信息
+		
+		pmObj.then(data => {
+			console.log(data)
+		}).catch(err => {
+			console.log(err)
+		})
+		
+		
+		总结：    
+		    成功的状态可以通过promise中的then()函数访问
+		    失败的状态可以通过promise中的catch()函数访问
+			
+			
+			
+		!!!!!基于Promise解决以上回调地狱的问题
+		
+		
+		axios.get('/api1').then(value => {
+			console.log(`第一个请求成功:`,value)
+			return axios.get('/api2');
+		})
+		.then(value => {
+			console.log(`第二个请求成功:`,value)
+			return axios.get('/api3');
+		})
+		.then(value => {
+			console.log(`第三个请求成功:`,value)
+		})
+		// 上一个then执行完后返回一个新实例，才会执行下一个then
+	</script>
+</html>
